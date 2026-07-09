@@ -156,7 +156,11 @@ venv/
 ENV/
 env.bak/
 venv.bak/
-
+venv311/
+__pycache__/
+data/
+*.pyc
+checkpoints/
 # Spyder project settings
 .spyderproject
 .spyproject
