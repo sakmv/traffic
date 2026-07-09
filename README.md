@@ -1,2 +1,3 @@
-# traffic
-ETA prediction with a Graph Neural Network
+# diffusion
+Diffusion model from scratch in pytorch
+
