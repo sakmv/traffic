@@ -1,4 +1,4 @@
-# train.py
+
 import os
 import time
 import torch
@@ -7,11 +7,8 @@ from torchvision import datasets, transforms
 from torch.utils.data import DataLoader
 from diffusion import Diffusion, DiffusionConfig
 
-# train.py
-
-# --- data ---
 transform = transforms.Compose([
-    transforms.Pad(2),                      # 28x28 -> 32x32
+    transforms.Pad(2),                      
     transforms.ToTensor(),
     transforms.Normalize((0.5,), (0.5,))
 ])
@@ -19,14 +16,14 @@ transform = transforms.Compose([
 train_dataset = datasets.FashionMNIST(root="./data", train=True, download=True, transform=transform)
 loader = DataLoader(train_dataset, batch_size=32, shuffle=True, num_workers=0, pin_memory=True)
 
-# --- model ---
+
 config = DiffusionConfig(image_size=32, in_channels=1)
 diffusion = Diffusion(config)
 optimizer = torch.optim.Adam(diffusion.model.parameters(), lr=1e-3)
 
 print("Using device:", config.device)
 
-# --- training loop ---
+
 epochs = 50
 loss_history = []
 os.makedirs("checkpoints", exist_ok=True)
@@ -49,13 +46,13 @@ for epoch in range(epochs):
     loss_history.append(avg_loss)
     print(f"Epoch {epoch+1}/{epochs} | loss: {avg_loss:.4f} | time: {time.time()-start:.1f}s")
 
-# --- plot + save loss curve ---
+
 plt.plot(loss_history)
 plt.xlabel("Epoch")
 plt.ylabel("Loss")
 plt.title("Training Loss")
 plt.savefig("loss_curve.png")
 
-# --- save checkpoint ---
+
 torch.save(diffusion.model.state_dict(), "diffusion_model.pt")
 print("Saved diffusion_model.pt")

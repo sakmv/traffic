@@ -7,7 +7,7 @@ import os
 
 from diffusion import Diffusion, DiffusionConfig
 
-st.set_page_config(page_title="DDPM Demo", layout="centered")
+st.set_page_config(page_title="DDPM ", layout="centered")
 
 st.markdown("""
     <style>
@@ -43,7 +43,7 @@ st.divider()
 st.header("Watch the denoising process")
 
 mode = st.radio(
-    "Display mode",
+    "Display mode ",
     ["Grid (snapshots)", "Live (single image)"],
     horizontal=True,
 )

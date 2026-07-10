@@ -53,7 +53,7 @@ class Block(nn.Module):
         time_emb = time_emb[(..., ) + (None, ) * 2]
         h = h + time_emb
         h = self.bnorm2(self.relu(self.conv2(h)))
-        return self.transform(h)
+        return self.transform(h) 
 
 class SimpleUNet(nn.Module):
     """A minimal U-Net to predict noise"""
