@@ -110,8 +110,8 @@ class Diffusion(nn.Module):
     def noise_images(self, x, t):
         sqrt_alpha_hat = torch.sqrt(self.alpha_hat[t])[:, None, None, None]
         sqrt_one_minus_alpha_hat = torch.sqrt(1 - self.alpha_hat[t])[:, None, None, None]
-        ε = torch.randn_like(x)
-        return sqrt_alpha_hat * x + sqrt_one_minus_alpha_hat * ε, ε
+        noise = torch.randn_like(x)
+        return sqrt_alpha_hat * x + sqrt_one_minus_alpha_hat * noise, noise
 
     def sample_timesteps(self, n):
         return torch.randint(low=1, high=self.config.timesteps, size=(n,), device=self.config.device)
